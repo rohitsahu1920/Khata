@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Khata</string>
+    <string name="setting">Setting</string>
+    <string name="share">Share</string>
+    <string name="sync">Sync</string>
+    <string name="home">Home</string>
+    <string name="loading">Loading..</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Login and Registration page-->
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="c_pass">Confirm Password</string>
+    <string name="email">Email id</string>
+    <string name="login">Login</string>
+    <string name="register">Registration</string>
+    <string name="not_register">Not registered yet? Goto registration page</string>
+    <string name="already_register">Already registered? Goto login page</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+
+    <!--cutomer registration-->
+    <string name="crfname">First Name</string>
+    <string name="crlname">Last Name</string>
+    <string name="crphone">Phone Number</string>
+    <string name="crwhatsapp">Whatsapp Number</string>
+    <string name="craddress">Address</string>
+    <string name="crphoto">Select Photo</string>
+    <string name="crsave">Save Details</string>
+    <string name="crclear">Clear</string>
+    <string name="forget">Forget Password ?</string>
+
+    <string-array name="crgender">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <!--Customer Details Show-->
+
+    <string name="fname">First Name :-</string>
+    <string name="lname">Last Name :-</string>
+    <string name="phone_num">Phone Number :-</string>
+    <string name="whatsapp_num">Whatsapp Number :-</string>
+    <string name="address">Address :-</string>
+    <string name="photo">Profile</string>
+    <string name="gender">Gender :-</string>
+    <string name="save">Save Details</string>
+    <string name="pdf">Generate PDF</string>
+    <string name="alert">WhatsApp Alert</string>
+    <string name="update">Update</string>
+
+</resources>
