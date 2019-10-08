@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import sahu.rohit.khata.Model.customer;
@@ -23,6 +26,8 @@ public class customer_data_show extends AppCompatActivity {
     Button update,pdf,alert;
     byte[] image;
     String fname1,lname1,gender1,phone1,whatsapp1,address1;
+    int image_len;
+    Bitmap id1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,47 +40,35 @@ public class customer_data_show extends AppCompatActivity {
         gender = findViewById(R.id.gender_result);
         phone = findViewById(R.id.mobile_result);
         whatsapp = findViewById(R.id.whatsapp_mobile_result);
-        address = findViewById(R.id.p_add_result);
+        address = findViewById(R.id.add_result);
 
         update = findViewById(R.id.update);
         pdf = findViewById(R.id.pdf);
         alert = findViewById(R.id.alert);
 
+        setdata();
+
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                customer Renti_model = (customer) getIntent().getExtras().getSerializable("renti");
-                fname = Renti_model.getFirst_name();
-                lname = Renti_model.getLast_name();
-                gender1 = Renti_model.getGender();
-                father = Renti_model.getFather_name();
-                pnone = Renti_model.getMobile();
-                w_phone = Renti_model.getWhatsapp();
-                f_mobile = Renti_model.getP_mobile();
-                occu = Renti_model.getOccupation();
-                p_address = Renti_model.getPermanent_address();
-                c_address = Renti_model.getCurrent_address();
-                pg = Renti_model.getPg_name();
-                room = Renti_model.getRoom_no();
-                bed = Renti_model.getBed_no();
-                id_img = Renti_model.getId_image();
+                customer Customer = (customer) getIntent().getExtras().getSerializable("renti");
+                fname1 = Customer.getFirst_name();
+                lname1 = Customer.getLast_name();
+                gender1 = Customer.getGender();
+                phone1 = Customer.getMobile();
+                whatsapp1 = Customer.getWhatsapp();
+                address1 = Customer.getAddress();
+                image = Customer.getId_image();
+
 
                 Intent intent = new Intent(getApplicationContext(),update_customer_data.class);
-                intent.putExtra("fname",fname);
-                intent.putExtra("lname",lname);
+                intent.putExtra("fname",fname1);
+                intent.putExtra("lname",lname1);
                 intent.putExtra("gender",gender1);
-                intent.putExtra("father",father);
-                intent.putExtra("phone",pnone);
-                intent.putExtra("w_phone",w_phone);
-                intent.putExtra("f_mobile",f_mobile);
-                intent.putExtra("occu",occu);
-                intent.putExtra("p_address",p_address);
-                intent.putExtra("c_address",c_address);
-                intent.putExtra("pg",pg);
-                intent.putExtra("room",room);
-                intent.putExtra("bed",bed);
-                intent.putExtra("id_img",id_img);
-
+                intent.putExtra("phone",phone1);
+                intent.putExtra("w_phone",whatsapp1);
+                intent.putExtra("c_address",address1);
+                intent.putExtra("id_img",image);
                 startActivity(intent);
             }
         });
@@ -101,5 +94,20 @@ public class customer_data_show extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setdata()
+    {
+        customer Customer = (customer) getIntent().getExtras().getSerializable("renti");
+        fname.setText(Customer.getFirst_name());
+        lname.setText(Customer.getLast_name());
+        //gender.setText(Customer.getGender());
+        phone.setText(Customer.getMobile());
+        whatsapp.setText(Customer.getWhatsapp());
+        address.setText(Customer.getAddress());
+        image_len = Customer.getId_image().length;
+        image = Customer.getId_image();
+        id1 = BitmapFactory.decodeByteArray(Customer.getId_image(),0,Customer.getId_image().length);
+        profile.setImageBitmap(id1);
     }
 }

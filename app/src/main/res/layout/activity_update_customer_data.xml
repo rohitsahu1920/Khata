@@ -32,49 +32,55 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/enter_fname"
+                    android:hint="@string/crfname"
                     android:textSize="25sp"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
-                    android:id="@+id/renti_fname"/>
+                    android:id="@+id/udfname"/>
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/enter_lname"
+                    android:hint="@string/crlname"
                     android:textSize="25sp"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
-                    android:id="@+id/renti_lastname"/>
+                    android:id="@+id/udlname"/>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/udgender"
+                    android:entries="@array/crgender"/>
 
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/enter_mobile"
+                    android:hint="@string/crphone"
                     android:inputType="phone"
                     android:textSize="25sp"
                     android:textColor="@color/black"
-                    android:id="@+id/renti_mobile_number"/>
+                    android:id="@+id/udphone"/>
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/enter_whatsapp_number"
+                    android:hint="@string/crwhatsapp"
                     android:inputType="phone"
                     android:textSize="25sp"
                     android:textColor="@color/black"
-                    android:id="@+id/renti_whatsapp_number"/>
+                    android:id="@+id/udwhatsapp"/>
 
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/enter_office_address"
+                    android:hint="@string/craddress"
                     android:textSize="25sp"
                     android:inputType="textPostalAddress"
                     android:textColor="@color/black"
-                    android:id="@+id/renti_office_address"/>
+                    android:id="@+id/udaddress"/>
 
 
                 <LinearLayout
@@ -97,18 +103,18 @@
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:id="@+id/renti_profile"
+                            android:id="@+id/udprofile"
                             android:src="@drawable/ic_photo"/>
 
                         <Button
                             android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/upload_id_proof"
+                            android:text="@string/crphoto"
                             android:textColor="@color/black"
                             android:layout_gravity="center"
                             android:background="@color/colorPrimary"
-                            android:id="@+id/renti_id_button"/>
+                            android:id="@+id/udprofile_button"/>
 
                     </LinearLayout>
 
@@ -128,7 +134,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/update"
                         android:background="@color/colorPrimary"
-                        android:id="@+id/renti_update" />
+                        android:id="@+id/udupdate" />
 
 
                 </LinearLayout>
