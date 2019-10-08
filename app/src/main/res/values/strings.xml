@@ -52,4 +52,9 @@
     <string name="alert">WhatsApp Alert</string>
     <string name="update">Update</string>
 
+
+    <string name="delete">Delete</string>
+    <string name="call">Call</string>
+    <string name="whatsapp">Whatsapp</string>
+
 </resources>

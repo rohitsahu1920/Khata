@@ -1,6 +1,8 @@
 package sahu.rohit.khata.Model;
 
-public class customer {
+import java.io.Serializable;
+
+public class customer implements Serializable {
     private String first_name;
     private String last_name;
     private String gender;

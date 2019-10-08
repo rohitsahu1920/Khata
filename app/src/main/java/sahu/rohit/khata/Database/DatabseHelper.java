@@ -1,5 +1,6 @@
 package sahu.rohit.khata.Database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -13,6 +14,7 @@ import java.util.List;
 import sahu.rohit.khata.Model.customer;
 
 public class DatabseHelper extends SQLiteOpenHelper {
+
     public DatabseHelper(Context context) {
         super(context,"khata1.db", null, 1);
     }
@@ -96,7 +98,7 @@ public class DatabseHelper extends SQLiteOpenHelper {
     {
         List<customer> renti_model_List = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from rentee",null);
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from customer",null);
         if(cursor.moveToFirst())
         {
             do
@@ -115,5 +117,33 @@ public class DatabseHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
         return renti_model_List;
+    }
+
+    public boolean delete_all()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long delete = db.delete("customer", null,null);
+        if(delete == -1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public boolean delete(String fname,String lname,String phone,String w_phone)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long delete = db.delete("customer", "fname = ? and lname = ? and mobile_num = ? and whatsapp_num = ?",new String[]{fname,lname,phone,w_phone});
+        if(delete == -1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }
