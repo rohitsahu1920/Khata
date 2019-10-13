@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".update_customer_data"></activity>
+        <activity android:name=".contect_us"></activity>
+        <activity android:name=".App_info" />
+        <activity android:name=".settint" />
+        <activity android:name=".update_customer_data" />
         <activity android:name=".customer_data_show" />
         <activity android:name=".Customer_registration" />
         <activity android:name=".Main_registration_page" />

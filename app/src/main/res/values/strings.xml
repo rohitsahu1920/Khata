@@ -56,5 +56,22 @@
     <string name="delete">Delete</string>
     <string name="call">Call</string>
     <string name="whatsapp">Whatsapp</string>
+    <string name="contact">Contact Us</string>
+    <string name="about">About Us</string>
+
+    <string name="wipe_customer">Delete All Customer Data</string>
+    <string name="wipe_all">Delete All Data and Logout</string>
+    <string name="app_info">App Info</string>
+
+    <string name="khata">Khata Book</string>
+    <string name="version">Version 1.0</string>
+
+    <string name="email_error">Enter Email</string>
+    <string name="contact_number">Enter contact number</string>
+    <string name="title">Enter Issue Title</string>
+    <string name="problem">Enter problem in Detail</string>
+    <string name="suggestion">Any suggestion</string>
+    <string name="submit">Submit</string>
+
 
 </resources>

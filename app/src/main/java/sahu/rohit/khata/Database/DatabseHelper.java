@@ -133,6 +133,21 @@ public class DatabseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean delete_all_user()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long delete = db.delete("user", null,null);
+        if(delete == -1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+
     public boolean delete(String fname,String lname,String phone,String w_phone)
     {
         SQLiteDatabase db = this.getWritableDatabase();

@@ -140,15 +140,38 @@ public class Main_page extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId())
+        int id = item.getItemId();
+        switch (id)
         {
             case android.R.id.home:
                 drawerLayout.openDrawer(Gravity.LEFT);
                 break;
 
+            case R.id.setting:
+                startActivity(new Intent(this,settint.class));
+                break;
+
+            case R.id.about:
+                startActivity(new Intent(this,App_info.class));
+                break;
+
+            case R.id.sync:
+                retrive();
+                Toast.makeText(this,"Sync Successfully",Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.share:
+                share();
+                break;
+
+            case R.id.contact:
+                startActivity(new Intent(this,contect_us.class));
+                break;
+
             case R.id.delete:
                 delete_all();
                 break;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -166,8 +189,8 @@ public class Main_page extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Boolean delete = db.delete_all();
-                        if(delete == true)
+                        boolean delete = db.delete_all();
+                        if(delete)
                         {
                             Toast.makeText(getApplicationContext(),"Record Deleted Successfully",Toast.LENGTH_LONG).show();
                             retrive();
@@ -197,4 +220,12 @@ public class Main_page extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
     }
 
+    public void share()
+    {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT,"KHATA BOOK");
+        intent.putExtra(Intent.EXTRA_TEXT,"link will be available soon");
+        startActivity(Intent.createChooser(intent,"Share Application Link"));
+    }
 }
