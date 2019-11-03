@@ -61,6 +61,46 @@ public class Main_page extends AppCompatActivity {
         list_view_fragment = findViewById(R.id.listview_fragment);
         theList = new ArrayList<>();
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId())
+                {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),Main_page.class));
+                        break;
+
+                    case R.id.setting:
+                        startActivity(new Intent(getApplicationContext(),settint.class));
+                        Toast.makeText(getApplicationContext(),"Settings",Toast.LENGTH_LONG).show();
+                        break;
+
+                    case R.id.about:
+                        startActivity(new Intent(getApplicationContext(),App_info.class));
+                        break;
+
+                    case R.id.sync:
+                        retrive();
+                        Toast.makeText(getApplicationContext(),"Sync Successfully",Toast.LENGTH_LONG).show();
+                        break;
+
+                    case R.id.share:
+                        share();
+                        break;
+
+                    case R.id.contact:
+                        startActivity(new Intent(getApplicationContext(),contect_us.class));
+                        break;
+
+                    case R.id.stats:
+                        startActivity(new Intent(getApplicationContext(),statistics.class));
+                        break;
+                }
+                return false;
+            }
+        });
+
         retrive();
 
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
@@ -69,7 +109,7 @@ public class Main_page extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Customer_registration.class));
+                startActivity(new Intent(getApplicationContext(),add_transaction.class));
             }
         });
 
@@ -147,30 +187,12 @@ public class Main_page extends AppCompatActivity {
                 drawerLayout.openDrawer(Gravity.LEFT);
                 break;
 
-            case R.id.setting:
-                startActivity(new Intent(this,settint.class));
-                break;
-
-            case R.id.about:
-                startActivity(new Intent(this,App_info.class));
-                break;
-
-            case R.id.sync:
-                retrive();
-                Toast.makeText(this,"Sync Successfully",Toast.LENGTH_LONG).show();
-                break;
-
-            case R.id.share:
-                share();
-                break;
-
-            case R.id.contact:
-                startActivity(new Intent(this,contect_us.class));
-                break;
-
             case R.id.delete:
                 delete_all();
                 break;
+
+            case R.id.add:
+                startActivity(new Intent(this,Customer_registration.class));
 
         }
 

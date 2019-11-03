@@ -16,20 +16,21 @@ import sahu.rohit.khata.Model.customer;
 public class DatabseHelper extends SQLiteOpenHelper {
 
     public DatabseHelper(Context context) {
-        super(context,"khata1.db", null, 1);
+        super(context,"khata2.db", null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("Create table user(UserName text primary key,email text, password text)");
         db.execSQL("Create table customer(fname text,lname text,gender text,mobile_num text,whatsapp_num text,address text,profile BLOB)");
-
+        db.execSQL("Create table trans(trans text,username text,amount number,description text,type text,datetime text)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists user");
         db.execSQL("drop table if exists customer");
+        db.execSQL("drop table if exists trans");
     }
 
     public boolean insert(String UserName, String email, String password){
@@ -119,6 +120,26 @@ public class DatabseHelper extends SQLiteOpenHelper {
         return renti_model_List;
     }
 
+    public List<customer> getUsername()
+    {
+        List<customer> user_name = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select fname, lname from customer",null);
+        if(cursor.moveToNext())
+        {
+            do
+            {
+                String first = cursor.getString(0);
+                String last = cursor.getString(1);
+                String fullname = first + last;
+                customer customer =  new customer(fullname);
+                user_name.add(customer);
+            }
+            while (cursor.moveToNext());
+        }
+        return user_name;
+    }
+
     public boolean delete_all()
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -161,4 +182,6 @@ public class DatabseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
+
 }

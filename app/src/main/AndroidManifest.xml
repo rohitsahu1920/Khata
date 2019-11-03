@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".contect_us"></activity>
+        <activity android:name=".statistics"></activity>
+        <activity android:name=".add_transaction"></activity>
+        <activity android:name=".contect_us" />
         <activity android:name=".App_info" />
         <activity android:name=".settint" />
         <activity android:name=".update_customer_data" />

@@ -10,6 +10,8 @@ public class customer implements Serializable {
     private String whatsapp;
     private String address;
 
+    private String fullname;
+
     public customer(String first_name, String last_name, String gender, String mobile, String whatsapp, String address, byte[] id_image) {
         this.first_name = first_name;
         this.last_name = last_name;
@@ -18,6 +20,11 @@ public class customer implements Serializable {
         this.whatsapp = whatsapp;
         this.address = address;
         this.id_image = id_image;
+    }
+
+    public customer(String fullname)
+    {
+        this.fullname = fullname;
     }
 
     public String getFirst_name() {
