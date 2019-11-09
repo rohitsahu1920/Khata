@@ -1,5 +1,7 @@
 package sahu.rohit.khata.Model;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class customer implements Serializable {
@@ -22,9 +24,17 @@ public class customer implements Serializable {
         this.id_image = id_image;
     }
 
-    public customer(String fullname)
+    @NonNull
+    @Override
+    public String toString() {
+        return getFirst_name() + " " + getLast_name();
+    }
+
+
+    public customer(String first_name,String last_name)
     {
-        this.fullname = fullname;
+        this.first_name = first_name;
+        this.last_name = last_name;
     }
 
     public String getFirst_name() {

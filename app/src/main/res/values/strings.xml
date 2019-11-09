@@ -80,5 +80,13 @@
     </string-array>
 
     <string name="stat">Statistics</string>
+    <string name="transaction">All Transaction</string>
+
+
+    <string name="transaction_id">Transaction Id</string>
+    <string name="transaction_username">Full Name</string>
+    <string name="transaction_amount">Amount</string>
+    <string name="transaction_desc">Description</string>
+    <string name="transaction_date">Date</string>
 
 </resources>

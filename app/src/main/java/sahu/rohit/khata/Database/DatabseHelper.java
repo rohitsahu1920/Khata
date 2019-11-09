@@ -6,24 +6,24 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import sahu.rohit.khata.Model.customer;
+import sahu.rohit.khata.Model.transaction;
 
 public class DatabseHelper extends SQLiteOpenHelper {
 
     public DatabseHelper(Context context) {
-        super(context,"khata2.db", null, 2);
+        super(context,"khata4.db", null, 4);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("Create table user(UserName text primary key,email text, password text)");
         db.execSQL("Create table customer(fname text,lname text,gender text,mobile_num text,whatsapp_num text,address text,profile BLOB)");
-        db.execSQL("Create table trans(trans text,username text,amount number,description text,type text,datetime text)");
+        db.execSQL("Create table trans(trans INTEGER PRIMARY KEY AUTOINCREMENT,username text,amount text,description text,datetime text)");
     }
 
     @Override
@@ -95,6 +95,25 @@ public class DatabseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean insert_transaction(String name, String amount, String desc, String date)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("username",name);
+        cv.put("amount",amount);
+        cv.put("description",desc);
+        cv.put("datetime",date);
+        long ins = db.insert("trans",null,cv);
+        if(ins == -1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public List<customer> getDetails()
     {
         List<customer> renti_model_List = new ArrayList<>();
@@ -120,19 +139,53 @@ public class DatabseHelper extends SQLiteOpenHelper {
         return renti_model_List;
     }
 
+    public ArrayList<transaction> gettransaction()
+    {
+        ArrayList<transaction> transaction_model_List = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select * from trans",null);
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                int trans_id = cursor.getInt(0);
+                String username = cursor.getString(1);
+                String amount = cursor.getString(2);
+                String description = cursor.getString(3);
+                String date = cursor.getString(4);
+
+                transaction transaction = new transaction(trans_id,username,amount,description,date);
+                transaction_model_List.add(transaction);
+            }
+            while (cursor.moveToNext());
+        }
+        return transaction_model_List;
+    }
+
+    public String get_total_loan()
+    {
+        String count1 = "";
+        SQLiteDatabase db = getReadableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("select count(amount) from trans",null);
+        if(cursor.moveToNext())
+        {
+            count1 = cursor.getString(2);
+        }
+        return count1;
+    }
+
     public List<customer> getUsername()
     {
         List<customer> user_name = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select fname, lname from customer",null);
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("select fname, lname from customer",null);
         if(cursor.moveToNext())
         {
             do
             {
                 String first = cursor.getString(0);
                 String last = cursor.getString(1);
-                String fullname = first + last;
-                customer customer =  new customer(fullname);
+                customer customer =  new customer(first,last);
                 user_name.add(customer);
             }
             while (cursor.moveToNext());
@@ -182,6 +235,5 @@ public class DatabseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-
 
 }

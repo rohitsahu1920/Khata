@@ -9,35 +9,51 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import sahu.rohit.khata.Database.DatabseHelper;
-import sahu.rohit.khata.R;
+import sahu.rohit.khata.Model.customer;
+import sahu.rohit.khata.Model.transaction;
 
-public class statistics extends AppCompatActivity {
+public class transaction_list extends AppCompatActivity {
 
+    ListView listView;
     DatabseHelper db;
     Toolbar toolbar;
-    TextView total_loan,total_customer;
+    ArrayList<sahu.rohit.khata.Model.transaction> transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistics);
+        setContentView(R.layout.activity_transaction_list);
 
-        db = new DatabseHelper(this);
-
-        total_loan = findViewById(R.id.total_loan);
-        total_customer = findViewById(R.id.total_cutomer);
+        listView = findViewById(R.id.list);
+        db =new DatabseHelper(this);
         toolbar = findViewById(R.id.toolbar);
+        transaction = new ArrayList<>();
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //String x = db.get_total_loan();
-        //total_loan.setText(x);
+        transaction= db.gettransaction();
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,transaction);
+        listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                sahu.rohit.khata.Model.transaction transaction1 = transaction.get(i);
+                Intent intent = new Intent(getApplicationContext(),show_transaction.class);
+                intent.putExtra("transaction",transaction1);
+                startActivity(intent);
+            }
+        });
 
     }
 

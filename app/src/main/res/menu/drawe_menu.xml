@@ -8,6 +8,11 @@
             android:icon="@drawable/ic_home_black_24dp"/>
 
         <item
+            android:id="@+id/transaction"
+            android:title="@string/transaction"
+            android:icon="@drawable/ic_transaction_black_24dp"/>
+
+        <item
             android:id="@+id/stats"
             android:title="@string/stat"
             android:icon="@drawable/ic_trending_up_black_24dp"/>

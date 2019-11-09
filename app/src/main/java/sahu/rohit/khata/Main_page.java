@@ -31,7 +31,6 @@ import sahu.rohit.khata.Database.DatabseHelper;
 import sahu.rohit.khata.Model.customer;
 
 public class Main_page extends AppCompatActivity {
-
     List<customer> list;
     ArrayList<String> theList;
     ListView listView;
@@ -95,6 +94,10 @@ public class Main_page extends AppCompatActivity {
 
                     case R.id.stats:
                         startActivity(new Intent(getApplicationContext(),statistics.class));
+                        break;
+
+                    case R.id.transaction:
+                        startActivity(new Intent(getApplicationContext(), transaction_list.class));
                         break;
                 }
                 return false;
@@ -235,9 +238,10 @@ public class Main_page extends AppCompatActivity {
         alert11.show();
     }
 
+
     public void retrive()
     {
-        list = db.getDetails();
+        list= db.getDetails();
         ArrayAdapter<customer> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,list);
         listView.setAdapter(arrayAdapter);
     }
